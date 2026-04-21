@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -27,7 +28,8 @@ class PostController extends Controller
     }
     public function store(StorePostRequest $request)
     {
-        Post::create($request->validated());
+        $validated = $request->validated();
+        $request->user()->posts()->create($validated);
         return redirect()->route('posts.index')->with('success', 'Пост успешно создан');
     }
     public function edit(Post $post)
@@ -65,4 +67,11 @@ class PostController extends Controller
     {
         return redirect()->route('posts.show', $post)->with('success', 'Пост закреплен');
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+    
+
 }

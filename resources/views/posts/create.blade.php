@@ -28,6 +28,7 @@
         <button type="submit">Создать пост</button>
         <p><a href="{{ route('about') }}">← О проекте</a></p>
         <p><a href="{{ route('posts.index') }}">← Все посты</a></p>
+        
     </form>
 </body>
 </html>

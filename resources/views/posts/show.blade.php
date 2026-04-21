@@ -25,6 +25,7 @@
         @csrf
         <button type="submit">Закрепить</button>
     </form>
+    <p>Автор: {{ $post->user->name }}</p>
 
 
 </body>
